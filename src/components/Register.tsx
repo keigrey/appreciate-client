@@ -34,6 +34,7 @@ const Register = () => {
           type="text"
           id="first_name"
           name="first_name"
+          required
         />
         <label htmlFor="last_name">Last Name</label>
         <input
@@ -41,15 +42,23 @@ const Register = () => {
           type="text"
           id="last_name"
           name="last_name"
+          required
         />
         <label htmlFor="email">Email</label>
-        <input {...register("email")} type="text" id="email" name="email" />
+        <input
+          {...register("email")}
+          type="text"
+          id="email"
+          name="email"
+          required
+        />
         <label htmlFor="password">Password</label>
         <input
           {...register("password")}
           type="text"
           id="password"
           name="password"
+          required
         />
         <label htmlFor="confirm_password">Confirm Password</label>
         <input
@@ -57,6 +66,7 @@ const Register = () => {
           type="text"
           id="confirm_password"
           name="confirm_password"
+          required
         />
         <input type="submit" value="Register" />
       </form>
