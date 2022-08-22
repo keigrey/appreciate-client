@@ -1,8 +1,10 @@
 import React from "react";
+import Header from "./Header";
 
 const Register = () => {
   return (
     <div>
+      <Header />
       <h1>Register</h1>
       <label htmlFor="first_name">First Name</label>
       <input type="text" id="first_name" name="first_name" />
