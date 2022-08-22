@@ -15,11 +15,13 @@ const Login = () => {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<LoginInfo>();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
     // alert(JSON.stringify(data));
     console.log(data);
 
-    axios.post(`${SERVER_URL}/entry`, data);
+    await axios.post(`${SERVER_URL}/entry`, data);
+
+    navigate("/home");
   });
 
   return (
