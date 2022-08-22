@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 
 type Entry = {
+  id: number;
   user_id: number;
   date: string;
   title: string;
@@ -21,6 +22,7 @@ const AddEntry = ({ setEntryToAdd }: any) => {
   const onSubmit = handleSubmit((data) => {
     data.user_id = 8;
     console.log(data);
+    data.id = 33;
     setEntryToAdd(data);
     axios.post(`${SERVER_URL}/entry`, data);
   });

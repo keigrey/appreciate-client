@@ -4,7 +4,7 @@ import Header from "./Header";
 import ShowAllEntries from "./ShowAllEntries";
 
 type Entry = {
-  user_id: number;
+  id: number;
   date: string;
   title: string;
   text: string;
