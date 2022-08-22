@@ -1,10 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import AddEntry from "./components/AddEntry";
-import Header from "./components/Header";
+import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import ShowAllEntries from "./components/ShowAllEntries";
+import WelcomePage from "./components/WelcomePage";
 
 function App() {
   return (
@@ -18,10 +17,10 @@ function App() {
     //   <ShowAllEntries />
     // </div>
     <Routes>
-      <Route path="/" element={<Header />} />
+      <Route path="/" element={<WelcomePage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/myhome" element={<AddEntry />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }
