@@ -2,11 +2,14 @@ import React from "react";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 type LoginInfo = {
   email: string;
   password: string;
 };
+
+const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,6 +18,8 @@ const Login = () => {
   const onSubmit = handleSubmit((data) => {
     // alert(JSON.stringify(data));
     console.log(data);
+
+    axios.post(`${SERVER_URL}/entry`, data);
   });
 
   return (

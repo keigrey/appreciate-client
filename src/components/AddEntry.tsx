@@ -1,20 +1,28 @@
 import React from "react";
 // import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 type Entry = {
+  user_id: number;
   date: string;
   title: string;
   text: string;
 };
 
+const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+
 const AddEntry = () => {
   // const navigate = useNavigate();
   const { register, handleSubmit } = useForm<Entry>();
 
+  console.log(SERVER_URL);
+
   const onSubmit = handleSubmit((data) => {
     // alert(JSON.stringify(data));
+    data.user_id = 8;
     console.log(data);
+    axios.post(`${SERVER_URL}/entry`, data);
   });
 
   return (

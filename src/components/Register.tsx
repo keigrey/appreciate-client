@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 type RegisterInfo = {
   first_name: string;
@@ -10,12 +11,16 @@ type RegisterInfo = {
   confirm_password: string;
 };
 
+const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+
 const Register = () => {
   const { register, handleSubmit } = useForm<RegisterInfo>();
 
   const onSubmit = handleSubmit((data) => {
     // alert(JSON.stringify(data));
     console.log(data);
+
+    axios.post(`${SERVER_URL}/entry`, data);
   });
 
   return (
