@@ -12,16 +12,16 @@ type Entry = {
 
 const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
 
-const AddEntry = () => {
+const AddEntry = ({ setEntryToAdd }: any) => {
   // const navigate = useNavigate();
   const { register, handleSubmit } = useForm<Entry>();
 
   console.log(SERVER_URL);
 
   const onSubmit = handleSubmit((data) => {
-    // alert(JSON.stringify(data));
     data.user_id = 8;
     console.log(data);
+    setEntryToAdd(data);
     axios.post(`${SERVER_URL}/entry`, data);
   });
 
