@@ -1,39 +1,44 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Entry from "./Entry";
 
-const ShowAllEntries = () => {
+const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+
+const ShowAllEntries = ({ entryToAdd }: any) => {
   const [entries, setEntries] = useState<
     {
+      id: number;
       date: string;
       title: string;
       text: string;
     }[]
   >([]);
 
-  const list = [
-    {
-      date: "2022-08-22",
-      title: "asdas",
-      text: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-    },
-    {
-      date: "2016-01-06",
-      title: "NExt",
-      text: "ASDKLASLKDHALKSDHJLKASHJD",
-    },
-    {
-      date: "2036-10-15",
-      title: "mmmmmm",
-      text: "sad234234234234234",
-    },
-  ];
-
   useEffect(() => {
-    setEntries(list);
+    (async () => {
+      try {
+        const response = await axios.get(`${SERVER_URL}/entry`);
+        const allEntries = response.data;
+        setEntries(allEntries);
+      } catch {
+        console.log("⭕⭕⭕ERROR⭕⭕⭕");
+      }
+    })();
   }, []);
 
+  useEffect(() => {
+    if (entryToAdd) {
+      setEntries((current) => [entryToAdd, ...current]);
+    }
+  }, [entryToAdd]);
+
   const displayAllEntries = entries.map((entry) => (
-    <Entry date={entry.date} title={entry.title} text={entry.text} />
+    <Entry
+      key={entry.id}
+      date={entry.date}
+      title={entry.title}
+      text={entry.text}
+    />
   ));
 
   return (
