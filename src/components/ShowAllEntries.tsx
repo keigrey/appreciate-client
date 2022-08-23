@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Entry from "./Entry";
 
-const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+const SERVER_URL = process.env.PORT
+  ? "https://app-reciate.herokuapp.com/"
+  : "http://localhost:8080";
 // const accessToken = localStorage.getItem("JWToken");
 
 const ShowAllEntries = ({ entryToAdd, setEntries, entries }: any) => {

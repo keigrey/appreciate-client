@@ -11,7 +11,9 @@ type Entry = {
   text: string;
 };
 
-const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+const SERVER_URL = process.env.PORT
+  ? "https://app-reciate.herokuapp.com"
+  : "http://localhost:8080";
 
 const AddEntry = ({ setEntryToAdd, setEntries, entries }: any) => {
   // const navigate = useNavigate();
