@@ -8,10 +8,10 @@ type LoginInfo = {
   email: string;
   password: string;
 };
-
-const SERVER_URL = process.env.PORT
-  ? "https://app-reciate.herokuapp.com"
-  : "http://localhost:8080";
+const SERVER_URL = "https://app-reciate.herokuapp.com";
+// const SERVER_URL = process.env.PORT
+//   ? "https://app-reciate.herokuapp.com"
+//   : "http://localhost:8080";
 
 const Login = () => {
   const navigate = useNavigate();
