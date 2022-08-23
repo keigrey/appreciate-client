@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Entry from "./Entry";
 
 const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+const accessToken = localStorage.getItem("JWToken");
 
 const ShowAllEntries = ({ entryToAdd }: any) => {
   const [entries, setEntries] = useState<
@@ -17,8 +18,14 @@ const ShowAllEntries = ({ entryToAdd }: any) => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(`${SERVER_URL}/entry`);
+        const response = await axios.get(`${SERVER_URL}/entry`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         const allEntries = response.data;
+        console.log("⭕⭕⭕ERROR⭕⭕⭕");
+        console.log(accessToken);
         setEntries(allEntries);
       } catch {
         console.log("⭕⭕⭕ERROR⭕⭕⭕");

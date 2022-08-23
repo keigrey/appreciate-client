@@ -12,19 +12,19 @@ type Entry = {
 };
 
 const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
+const accessToken = localStorage.getItem("JWToken");
 
 const AddEntry = ({ setEntryToAdd }: any) => {
   // const navigate = useNavigate();
   const { register, handleSubmit } = useForm<Entry>();
 
-  console.log(SERVER_URL);
-
   const onSubmit = handleSubmit((data) => {
-    data.user_id = 8;
-    console.log(data);
-    data.id = 33;
     setEntryToAdd(data);
-    axios.post(`${SERVER_URL}/entry`, data);
+    axios.post(`${SERVER_URL}/entry`, data, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   });
 
   return (

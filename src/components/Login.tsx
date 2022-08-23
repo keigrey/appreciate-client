@@ -17,11 +17,22 @@ const Login = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     // alert(JSON.stringify(data));
-    console.log(data);
+    // console.log(data);
 
-    await axios.post(`${SERVER_URL}/user/login`, data);
+    await axios
+      .post(`${SERVER_URL}/user/login`, data)
+      .then((response) => {
+        const accessToken = response.data.accessToken;
 
-    navigate("/home");
+        localStorage.setItem("JWToken", accessToken);
+
+        if (accessToken) {
+          navigate("/home");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   return (
