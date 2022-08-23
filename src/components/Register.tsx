@@ -16,11 +16,11 @@ const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
 const Register = () => {
   const { register, handleSubmit } = useForm<RegisterInfo>();
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit((userData) => {
     // alert(JSON.stringify(data));
-    console.log(data);
+    console.log(userData);
 
-    axios.post(`${SERVER_URL}/entry`, data);
+    axios.post(`${SERVER_URL}/user/new`, userData);
   });
 
   return (
