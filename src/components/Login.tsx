@@ -19,7 +19,7 @@ const Login = () => {
     // alert(JSON.stringify(data));
     console.log(data);
 
-    await axios.post(`${SERVER_URL}/entry`, data);
+    await axios.post(`${SERVER_URL}/user/login`, data);
 
     navigate("/home");
   });
