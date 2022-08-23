@@ -3,43 +3,43 @@ import React, { useEffect, useState } from "react";
 import Entry from "./Entry";
 
 const SERVER_URL = process.env.PORT ? "heroku" : "http://localhost:8080";
-const accessToken = localStorage.getItem("JWToken");
+// const accessToken = localStorage.getItem("JWToken");
 
-const ShowAllEntries = ({ entryToAdd }: any) => {
-  const [entries, setEntries] = useState<
-    {
-      id: number;
-      date: string;
-      title: string;
-      text: string;
-    }[]
-  >([]);
+const ShowAllEntries = ({ entryToAdd, setEntries, entries }: any) => {
+  // const [entries, setEntries] = useState<
+  //   {
+  //     id: number;
+  //     date: string;
+  //     title: string;
+  //     text: string;
+  //   }[]
+  // >([]);
 
   useEffect(() => {
     (async () => {
       try {
+        const accessToken = localStorage.getItem("JWToken");
         const response = await axios.get(`${SERVER_URL}/entry`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         });
         const allEntries = response.data;
-        console.log("⭕⭕⭕ERROR⭕⭕⭕");
-        console.log(accessToken);
+
         setEntries(allEntries);
       } catch {
         console.log("⭕⭕⭕ERROR⭕⭕⭕");
       }
     })();
-  }, []);
-
-  useEffect(() => {
-    if (entryToAdd) {
-      setEntries((current) => [entryToAdd, ...current]);
-    }
   }, [entryToAdd]);
 
-  const displayAllEntries = entries.map((entry) => (
+  // useEffect(() => {
+  //   if (entryToAdd) {
+  //     setEntries((current) => [entryToAdd, ...current]);
+  //   }
+  // }, [entryToAdd]);
+
+  const displayAllEntries = entries.map((entry: any) => (
     <Entry
       key={entry.id}
       date={entry.date}

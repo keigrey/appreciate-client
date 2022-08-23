@@ -12,6 +12,7 @@ type Entry = {
 
 const Home = () => {
   const [entryToAdd, setEntryToAdd] = useState<Entry>();
+  const [entries, setEntries] = useState<Entry[]>([]);
 
   // useEffect(() => {
   //   console.log("🥗🥗🥗🥗🥗", entryToAdd);
@@ -20,8 +21,16 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <AddEntry setEntryToAdd={setEntryToAdd} />
-      <ShowAllEntries entryToAdd={entryToAdd} />
+      <AddEntry
+        setEntryToAdd={setEntryToAdd}
+        entries={entries}
+        setEntries={setEntries}
+      />
+      <ShowAllEntries
+        entryToAdd={entryToAdd}
+        entries={entries}
+        setEntries={setEntries}
+      />
     </div>
   );
 };
