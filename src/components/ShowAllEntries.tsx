@@ -6,6 +6,8 @@ const SERVER_URL = process.env.PORT
   ? "https://app-reciate.herokuapp.com/"
   : "http://localhost:8080";
 // const accessToken = localStorage.getItem("JWToken");
+console.log("🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢🟢");
+console.log(process.env.PORT);
 
 const ShowAllEntries = ({ entryToAdd, setEntries, entries }: any) => {
   // const [entries, setEntries] = useState<
