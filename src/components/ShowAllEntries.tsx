@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Entry from "./Entry";
 
-const SERVER_URL = "https://app-reciate.herokuapp.com";
+// const SERVER_URL = "https://app-reciate.herokuapp.com";
+const SERVER_URL = "http://localhost:8080";
 
 // const SERVER_URL = process.env.PORT
 //   ? "https://app-reciate.herokuapp.com/"
@@ -48,16 +49,15 @@ const ShowAllEntries = ({ entryToAdd, setEntries, entries }: any) => {
   const displayAllEntries = entries.map((entry: any) => (
     <Entry
       key={entry.id}
-      date={entry.date}
+      date={entry.date.substring(0, 10).split("-").join("/")}
       title={entry.title}
       text={entry.text}
     />
   ));
 
   return (
-    <div>
-      <h1>Show all</h1>
-      <div>{displayAllEntries}</div>
+    <div className="">
+      <div className="flex flex-col-reverse">{displayAllEntries}</div>
     </div>
   );
 };
